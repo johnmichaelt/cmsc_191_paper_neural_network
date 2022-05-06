@@ -165,7 +165,7 @@ dummy_Y_validation = np_utils.to_categorical(encoded_Y_validation)
 dummy_Y_test = np_utils.to_categorical(encoded_Y_test)
 
 # MODEL CONSTRUCTION
-BATCH_SIZE = 10
+BATCH_SIZE = 20
 EPOCHS = 25
 
 stop_model_learning = tensorflow.keras.callbacks.EarlyStopping(monitor="val_loss", verbose=0, mode="min", patience=10, restore_best_weights=True)
@@ -174,7 +174,8 @@ def main_model():
   model = Sequential()
   initializer = tensorflow.keras.initializers.RandomNormal(mean=0., stddev=1.)
   model.add(Dense(19, input_dim=19, activation='relu'))
-  model.add(Dense(13, activation='relu'))
+  model.add(Dense(15, activation='relu'))
+  model.add(Dense(11, activation='relu'))
   model.add(Dense(7, activation='softmax', bias_initializer=initializer))
   model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=[
     CategoricalAccuracy(name = 'accuracy'),
@@ -211,7 +212,7 @@ loss_validation = records.history['val_loss']
 plt.plot(range(1,EPOCHS + 1), loss_train, 'r', label="Training Loss")
 plt.plot(range(1,EPOCHS + 1), loss_validation, 'b', label="Validation Loss")
 plt.xlabel("Epochs")
-plt.ylabel("Accuracy")
+plt.ylabel("Loss")
 plt.legend()
 plt.show()
 print("\n")
