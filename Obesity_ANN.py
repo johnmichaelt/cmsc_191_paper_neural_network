@@ -241,5 +241,11 @@ predict_model(X_train, dummy_Y_train)
 predict_model(X_test, dummy_Y_test)
 
 for weight_set in obesity_model.get_weights():
-  print(weight_set)
+  for item in weight_set:
+    # if isinstance(item,(list,pandas.core.series.Series,np.ndarray)):
+    #   for data in item:
+    #     print(data)
+    # else:
+    print(item)
+    # print("\n")
   print("\n\n")
